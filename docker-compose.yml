@@ -1,11 +1,11 @@
 version: '3'
 services:
   client:
-    image: tobiasadiya/multi-client
+    image: tobiasaditya/multi-client
     mem_limit: 128m
     hostname: client
   server:
-    image: tobiasadiya/multi-server
+    image: tobiasaditya/multi-server
     hostname: api
     mem_limit: 128m
     environment:
@@ -17,14 +17,14 @@ services:
       - PGDATABASE=$PGDATABASE
       - PGPASSWORD=$PGPASSWORD
   worker:
-    image: tobiasadiya/multi-worker
+    image: tobiasaditya/multi-worker
     mem_limit: 128m
     hostname: worker
     environment:
       - REDIS_HOST=$REDIS_HOST
       - REDIS_PORT=$REDIS_PORT
   nginx:
-    image: tobiasadiya/multi-nginx
+    image: tobiasaditya/multi-nginx
     mem_limit: 128m
     hostname: nginx
     ports:
