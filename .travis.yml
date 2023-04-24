@@ -1,0 +1,17 @@
+sudo: required
+services:
+  - docker
+
+before_install: 
+  - docker build -t tobiasaditya/react-test -f ./client/Dockerfile.dev ./client
+
+script: 
+  - docker run -e CI=true tobiasaditya/react-test npm run test
+
+after_success: 
+  - docker build -t tobiasaditya/multi-client ./client
+  - docker build -t tobiasaditya/multi-nginx  ./nginx
+  - docker build -t tobiasaditya/multi-server ./server
+  - docker build -t tobiasaditya/multi-worker ./worker
+  - docker push 
+  
