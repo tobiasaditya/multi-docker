@@ -13,5 +13,9 @@ after_success:
   - docker build -t tobiasaditya/multi-nginx  ./nginx
   - docker build -t tobiasaditya/multi-server ./server
   - docker build -t tobiasaditya/multi-worker ./worker
-  - docker push 
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  - docker push tobiasaditya/multi-client
+  - docker push tobiasaditya/multi-nginx
+  - docker push tobiasaditya/multi-server
+  - docker push tobiasaditya/multi-worker
   
